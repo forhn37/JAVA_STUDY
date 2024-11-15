@@ -14,6 +14,7 @@ public class App {
     FileOutputStream fos = new FileOutputStream("res/exams.out");
     PrintStream out = new PrintStream(fos);
 
+
     // int index = 0;
     // int total = 0;
     // floaavg = 0;
@@ -23,7 +24,7 @@ public class App {
     out.print("MATH,");
     out.print("TOTAL,");
     out.println("AVG");
-
+    //반복문 완성
     while (scan.hasNextLine()) {
 
       String line = scan.nextLine();

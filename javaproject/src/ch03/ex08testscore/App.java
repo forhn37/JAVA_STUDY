@@ -51,7 +51,7 @@ public class App {
       {
         clear();
   
-        FileInputStream fis = new FileInputStream("res/exams.csv");
+        FileInputStream fis = new FileInputStream("javaproject/res/exams.csv");
         Scanner filescan = new Scanner(fis);
   
         if (filescan.hasNextLine())
@@ -61,8 +61,9 @@ public class App {
         System.out.println("│       Test Score List        │");
         System.out.println("└──────────────────────────────┘");
         System.out.println("────────────────────────────────");
-        System.out.printf("%s,%s,%s,%s,%s\n", "KOR", "ENG", "MATH", "TOTAL", "AVG");
-  
+        System.out.printf("%-4s %-4s %-4s %-4s %-6s %-6s\n", "NO", "KOR", "ENG", "MATH", "TOTAL", "AVG");
+
+        int index = 1;
         while (filescan.hasNextLine()) {
           String line = filescan.nextLine();
           String[] tokens = line.split(",");
@@ -73,7 +74,9 @@ public class App {
           int total = kor + eng + math;
           float avg = ((float) total) / 3;
   
-          System.out.printf("%d,%d,%d,%d,%.2f\n", kor, eng, math, total, avg);
+          System.out.printf("%-4d %-4d %-4d %-4d %-6d %-6.2f\n",index, kor, eng, math, total, avg);
+
+          index++;
         }
   
         System.out.println();
@@ -86,17 +89,20 @@ public class App {
   
       }
   
+      clear();
       // // Test Score Input
       {
-        clear();
-  
+        
         int kor = 0;
         int eng = 0;
         int math = 0;
-  
-        FileOutputStream fos = new FileOutputStream("res/exams.csv", true);
+        
+        FileOutputStream fos = new FileOutputStream("javaproject/res/exams.csv", true);
         PrintStream out = new PrintStream(fos);
-  
+        
+        System.out.println("┌──────────────────────────────┐");
+        System.out.println("│       Test Score List        │");
+        System.out.println("└──────────────────────────────┘");
         System.out.print("kor:");
         kor = Integer.parseInt(scan.nextLine());
         System.out.print("eng:");
@@ -104,12 +110,14 @@ public class App {
         System.out.print("math:");
         math = Integer.parseInt(scan.nextLine());
   
-        out.println();
-        out.print(kor);
-        out.print(",");
-        out.print(eng);
-        out.print(",");
-        out.print(math);
+        // out.println();
+        // out.print(kor);
+        // out.print(",");
+        // out.print(eng);
+        // out.print(",");
+        // out.print(math);
+
+        out.printf("\n%d,%d,%d",kor, eng, math);
   
         out.close();
         fos.close();
